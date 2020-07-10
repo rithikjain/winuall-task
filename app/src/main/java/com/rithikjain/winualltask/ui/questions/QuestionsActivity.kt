@@ -3,6 +3,7 @@ package com.rithikjain.winualltask.ui.questions
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.webkit.WebSettings
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -20,6 +21,7 @@ class QuestionsActivity : AppCompatActivity() {
         questionMainView.isVisible = false
         prevButton.isEnabled = false
         nextButton.isEnabled = false
+        imageFix()
 
         var questionNumber = 0
 
@@ -44,7 +46,7 @@ class QuestionsActivity : AppCompatActivity() {
         })
 
         nextButton.setOnClickListener {
-            if (questionNumber < 150) {
+            if (questionNumber < 149) {
                 questionNumber++
                 setQuestionUI(questionNumber, questionList)
             }
@@ -65,5 +67,42 @@ class QuestionsActivity : AppCompatActivity() {
         questionTwoContent.loadData(questions[position].options[1].value, "text/html", "UTF-8")
         questionThreeContent.loadData(questions[position].options[2].value, "text/html", "UTF-8")
         questionFourContent.loadData(questions[position].options[3].value, "text/html", "UTF-8")
+    }
+
+    private fun imageFix() {
+        questionView.settings.apply {
+            domStorageEnabled = true
+            setAppCacheEnabled(true)
+            loadsImagesAutomatically = true
+            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
+
+        questionOneContent.settings.apply {
+            domStorageEnabled = true
+            setAppCacheEnabled(true)
+            loadsImagesAutomatically = true
+            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
+
+        questionTwoContent.settings.apply {
+            domStorageEnabled = true
+            setAppCacheEnabled(true)
+            loadsImagesAutomatically = true
+            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
+
+        questionThreeContent.settings.apply {
+            domStorageEnabled = true
+            setAppCacheEnabled(true)
+            loadsImagesAutomatically = true
+            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
+
+        questionFourContent.settings.apply {
+            domStorageEnabled = true
+            setAppCacheEnabled(true)
+            loadsImagesAutomatically = true
+            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
     }
 }
